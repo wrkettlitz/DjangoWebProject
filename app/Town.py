@@ -1,12 +1,13 @@
 class Town:
     name = ""
-    health_bar = int
+    amount_of_buildings = int
     amount_of_barracks = int
     resources = ""
 
-    def __init__(self,name,health_bar,amount_of_barracks,resources):
+
+    def __init__(self,name,amount_of_buildings,amount_of_barracks,resources):
         self.name = name
-        self.health_bar = health_bar
+        self.amount_of_buildings = amount_of_buildings
         self.amount_of_barracks = amount_of_barracks
         self.resources = resources
 
@@ -16,11 +17,11 @@ class Town:
     def SetName(self,name):
         name = self.name
 
-    def GetHealth_Bar(self):
-        return self.health_bar
+    def GetAmount_of_Buildings(self):
+        return self.amount_of_buildings
 
-    def SetHealth_Bar(self,heath_bar):
-        heath_bar = self.health_bar
+    def SetAmount_of_buildings(self,amount_of_buildings):
+        amount_of_buildings = self.amount_of_buildings
 
     def GetAmount_of_Barracks(self):
         return self.amount_of_barracks
