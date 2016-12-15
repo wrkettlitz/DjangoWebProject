@@ -1,7 +1,7 @@
 """
 Definition of urls for DjangoWebProject4.
 """
-from app.views import *
+
 from datetime import datetime
 from django.conf.urls import url
 import django.contrib.auth.views
@@ -37,8 +37,6 @@ urlpatterns = [
             'next_page': '/',
         },
         name='logout'),
-
-    
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
