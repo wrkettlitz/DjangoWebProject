@@ -4,5 +4,4 @@ class player(object):
         self.name = name
         self.money = money
         self.score = score
- 
-        
+

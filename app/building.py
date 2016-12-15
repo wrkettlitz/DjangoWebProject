@@ -8,6 +8,6 @@ class building(object):
         pass
 
     def addHealth(amount):
-        pass
+        pass 
 
 
