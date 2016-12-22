@@ -37,6 +37,9 @@
     <Compile Include="app\player.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\Unittest.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\tests.py" />
     <Compile Include="app\Town.py">
       <SubType>Code</SubType>
@@ -83,6 +86,7 @@
     <Folder Include="test\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\register.html" />
     <Content Include="MyApp1\templates\index.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
