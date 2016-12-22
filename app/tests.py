@@ -32,9 +32,3 @@ class ViewTest(TestCase):
         """Tests the about page."""
         response = self.client.get('/about')
         self.assertContains(response, 'About', 3, 200)
-
-        from django.test import TestCase
-
-class Unittest(TestCase):
-    def setUp(self):
-        self.client.login(username='admin', password='geheim12345')
