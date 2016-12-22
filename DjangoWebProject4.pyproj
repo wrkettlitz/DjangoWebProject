@@ -32,6 +32,7 @@
     <Compile Include="app\building.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\Explore.py" />
     <Compile Include="app\forms.py" />
     <Compile Include="app\models.py" />
     <Compile Include="app\player.py">
@@ -86,6 +87,7 @@
     <Folder Include="test\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\explore.html" />
     <Content Include="app\templates\app\register.html" />
     <Content Include="MyApp1\templates\index.html" />
     <Content Include="requirements.txt" />

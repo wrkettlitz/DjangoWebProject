@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
+from . import Explore
 
 
 
@@ -51,6 +52,21 @@ def about(request):
         {
             'title':'About',
             'message':'Your application description page.',
+            'year':datetime.now().year,
+        }
+    )
+def explore(request):
+    currenstats = Explore.CurrentStats
+    
+    """Renders the explore page."""
+    assert isinstance(request, HttpRequest)   
+    return render(
+        request,
+        'app/explore.html',
+        {
+            
+            'title':'Explore',
+            'message': currenstats.CurrentSoldiers(100) ,
             'year':datetime.now().year,
         }
     )

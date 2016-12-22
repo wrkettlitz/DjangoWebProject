@@ -24,3 +24,16 @@ C:\Users\Kaj\Source\Repos\DjangoWebProject4\bin\Microsoft.PythonTools.AzureSetup
 C:\Users\Kaj\Source\Repos\DjangoWebProject4\bin\wfastcgi.py
 C:\Users\Kaj\Source\Repos\DjangoWebProject4\obj\Debug\web.config
 C:\Users\Kaj\Source\Repos\DjangoWebProject4\obj\Debug\web.debug.config
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\bin\Microsoft.PythonTools.WebRole.dll
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\obj\Debug\attach_server.py
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\obj\Debug\visualstudio_py_debugger.py
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\obj\Debug\visualstudio_py_repl.py
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\obj\Debug\visualstudio_py_util.py
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\obj\Debug\__init__.py
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\obj\Debug\__main__.py
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\bin\AzureSetup.cfg
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\bin\Microsoft.PythonTools.AzureSetup.exe
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\bin\Microsoft.PythonTools.AzureSetup.exe.config
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\bin\wfastcgi.py
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\obj\Debug\web.config
+C:\Users\Jurgen\Source\Repos\DjangoWebProject\obj\Debug\web.debug.config
