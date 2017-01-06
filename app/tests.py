@@ -5,6 +5,27 @@ when you run "manage.py test".
 
 import django
 from django.test import TestCase
+from app.Friends import *
+import sqlite3
+import sqlite3
+from app.views import *
+from django.shortcuts import render
+from django.http import HttpRequest
+from django.template import RequestContext
+from datetime import datetime
+
+
+
+from django.http import HttpResponseRedirect    
+from django.contrib import auth                 
+from django.template.context_processors import csrf 
+from django.shortcuts import render_to_response
+
+from app.forms import UserCreationForm
+from app.Friends import *
+import app.Friends
+
+ 
 
 # TODO: Configure your database in settings.py and sync before running tests.
 
@@ -35,6 +56,9 @@ class ViewTest(TestCase):
 
         from django.test import TestCase
 
-class Unittest(TestCase):
-    def setUp(self):
-        self.client.login(username='admin', password='geheim12345')
+
+class FriendsUnitTest(TestCase):
+
+    def test_knop(self):
+        response = self.client.get('/Friends')
+        self.assertContains(response, 'Friends', 5, 200)
