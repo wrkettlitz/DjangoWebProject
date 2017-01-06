@@ -32,6 +32,9 @@
     <Compile Include="app\building.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\DatabaseTest.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\Explore.py" />
     <Compile Include="app\forms.py" />
     <Compile Include="app\models.py" />
@@ -53,20 +56,6 @@
     <Compile Include="DjangoWebProject4\settings.py" />
     <Compile Include="DjangoWebProject4\urls.py" />
     <Compile Include="DjangoWebProject4\wsgi.py" />
-    <Compile Include="MyApp1\admin.py" />
-    <Compile Include="MyApp1\apps.py" />
-    <Compile Include="MyApp1\migrations\__init__.py" />
-    <Compile Include="MyApp1\models.py" />
-    <Compile Include="MyApp1\tests.py" />
-    <Compile Include="MyApp1\views.py" />
-    <Compile Include="MyApp1\__init__.py" />
-    <Compile Include="test\admin.py" />
-    <Compile Include="test\apps.py" />
-    <Compile Include="test\migrations\__init__.py" />
-    <Compile Include="test\models.py" />
-    <Compile Include="test\tests.py" />
-    <Compile Include="test\views.py" />
-    <Compile Include="test\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
@@ -79,17 +68,11 @@
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
     <Folder Include="DjangoWebProject4\" />
-    <Folder Include="MyApp1\" />
-    <Folder Include="MyApp1\migrations\" />
-    <Folder Include="MyApp1\templates\" />
-    <Folder Include="test\" />
-    <Folder Include="test\migrations\" />
-    <Folder Include="test\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\City.html" />
     <Content Include="app\templates\app\explore.html" />
     <Content Include="app\templates\app\register.html" />
-    <Content Include="MyApp1\templates\index.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
@@ -120,7 +103,6 @@
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
-    <Content Include="test\templates\index.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.mht">

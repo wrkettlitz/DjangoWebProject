@@ -1,6 +1,6 @@
-class Player:
-    name = ""
-    money = int
+#not used
+
+class Player():
 
     def __init__(self, name, money):
         self.name = name
@@ -18,4 +18,10 @@ class Player:
 
     def SetMoney(self,money):
         money = self.money
-        
+
+
+    def buyBarrack(self, amount):
+        self.money -= (200 * amount)
+        return self.money
+
+P = Player("TestPlayer", 1000)  
