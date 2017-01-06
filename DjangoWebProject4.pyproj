@@ -37,6 +37,12 @@
     <Compile Include="app\player.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\Friends.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\sqlite3Connection.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\Unittest.py">
       <SubType>Code</SubType>
     </Compile>
@@ -54,7 +60,6 @@
     <Compile Include="DjangoWebProject4\wsgi.py" />
     <Compile Include="MyApp1\admin.py" />
     <Compile Include="MyApp1\apps.py" />
-    <Compile Include="MyApp1\migrations\__init__.py" />
     <Compile Include="MyApp1\models.py" />
     <Compile Include="MyApp1\tests.py" />
     <Compile Include="MyApp1\views.py" />
@@ -79,13 +84,13 @@
     <Folder Include="app\templates\app\" />
     <Folder Include="DjangoWebProject4\" />
     <Folder Include="MyApp1\" />
-    <Folder Include="MyApp1\migrations\" />
     <Folder Include="MyApp1\templates\" />
     <Folder Include="test\" />
     <Folder Include="test\migrations\" />
     <Folder Include="test\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\Friends.html" />
     <Content Include="app\templates\app\register.html" />
     <Content Include="MyApp1\templates\index.html" />
     <Content Include="requirements.txt" />
