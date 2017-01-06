@@ -1,0 +1,26 @@
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\bin\Microsoft.PythonTools.WebRole.dll
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\obj\Debug\attach_server.py
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\obj\Debug\visualstudio_py_debugger.py
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\obj\Debug\visualstudio_py_repl.py
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\obj\Debug\visualstudio_py_util.py
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\obj\Debug\__init__.py
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\obj\Debug\__main__.py
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\bin\AzureSetup.cfg
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\bin\Microsoft.PythonTools.AzureSetup.exe
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\bin\Microsoft.PythonTools.AzureSetup.exe.config
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\bin\wfastcgi.py
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\obj\Debug\web.config
+c:\users\jurgen\documents\visual studio 2015\Projects\TownZVisual\TownZVisual\obj\Debug\web.debug.config
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\bin\Microsoft.PythonTools.WebRole.dll
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\obj\Debug\attach_server.py
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\obj\Debug\visualstudio_py_debugger.py
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\obj\Debug\visualstudio_py_repl.py
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\obj\Debug\visualstudio_py_util.py
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\obj\Debug\__init__.py
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\obj\Debug\__main__.py
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\bin\AzureSetup.cfg
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\bin\Microsoft.PythonTools.AzureSetup.exe
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\bin\Microsoft.PythonTools.AzureSetup.exe.config
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\bin\wfastcgi.py
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\obj\Debug\web.config
+C:\Users\Jurgen\Desktop\TownZVisual\TownZVisual\obj\Debug\web.debug.config
