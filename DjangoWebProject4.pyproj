@@ -32,6 +32,10 @@
     <Compile Include="app\building.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="app\DatabaseTest.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\Explore.py" />
     <Compile Include="app\forms.py" />
     <Compile Include="app\models.py" />
     <Compile Include="app\player.py">
@@ -91,8 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\templates\app\Friends.html" />
+    <Content Include="app\templates\app\City.html" />
+    <Content Include="app\templates\app\explore.html" />
     <Content Include="app\templates\app\register.html" />
-    <Content Include="MyApp1\templates\index.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
@@ -123,7 +128,6 @@
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
     <Content Include="app\templates\app\loginpartial.html" />
-    <Content Include="test\templates\index.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.mht">
