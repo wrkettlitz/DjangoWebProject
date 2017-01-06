@@ -13,7 +13,9 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-
+import unittest
+from app.explore import EventHandlerTest
+from app.models import PlayerDetails,Player,PlayerTown
 
 
 from django.http import HttpResponseRedirect    
@@ -69,13 +71,13 @@ class TownUnittest(TestCase):
             django.setup()
 
     #Ja volgensmij moet dit met een setup maar idk
-    UnitTest1 = Town("UnitTest1", 20, 3, "Alot", 900, 0, 0)
-    UnitTest2 = Town("UnitTest2", -20, -3, "Alot", -900, 0, 0)
-    UnitTest3 = Town("Unit Test 3", 20, 3, "A lot", 900, 0, 0)
-    UnitTest4 = Town("UnitTest4", 0, 0, "Alot", 0, 0, 0)
-    UnitTest5 = Town("", 20, 1, "", 900, 0, 0)
-    UnitTest6 = Town("UnitTest6", -20, -3, "Alot", 900, 0, 0)
-    UnitTest7 = Town("UnitTest7", 0, 0, "Alot", 900, 4, 0)
+    UnitTest1 = Town.Town("UnitTest1", 20, 3, "Alot", 900, 0, 0,0)
+    UnitTest2 = Town.Town("UnitTest2", -20, -3, "Alot", -900, 0, 0,0)
+    UnitTest3 = Town.Town("Unit Test 3", 20, 3, "A lot", 900, 0, 0,0)
+    UnitTest4 = Town.Town("UnitTest4", 0, 0, "Alot", 0, 0, 0,0)
+    UnitTest5 = Town.Town("", 20, 1, "", 900, 0, 0,0)
+    UnitTest6 = Town.Town("UnitTest6", -20, -3, "Alot", 900, 0, 0,0)
+    UnitTest7 = Town.Town("UnitTest7", 0, 0, "Alot", 900, 4, 0,0)
 
 
     def test_Name(self):
@@ -144,3 +146,155 @@ class FriendsUnitTest(TestCase):
     def test_knop(self):
         response = self.client.get('/Friends')
         self.assertContains(response, 'Friends', 5, 200)
+
+
+class ViewTest(TestCase):
+    """Tests for the application views."""
+    if django.VERSION[:2] >= (1, 7):
+        # Django 1.7 requires an explicit setup() when running tests in PTVS
+        @classmethod
+        def setUpClass(cls):
+            super(ViewTest, cls).setUpClass()
+            django.setup()
+
+    def test_home(self):
+        """Tests the home page."""
+        response = self.client.get('/')
+        self.assertContains(response, 'Home Page', 1, 200)
+
+    def test_contact(self):
+        """Tests the contact page."""
+        response = self.client.get('/contact')
+        self.assertContains(response, 'Contact', 3, 200)
+
+    def test_about(self):
+        """Tests the about page."""
+        response = self.client.get('/about')
+        self.assertContains(response, 'About', 3, 200)
+
+
+# Om te testen, gebruik Command Prompt.
+# Command = python manage.py test app.tests.ExploreUnitTest.[functienaam]
+# Op een andere manier lukte het niet
+class ExploreUnitTest(TestCase):
+    if django.VERSION[:2] >= (1, 7):
+        # Django 1.7 requires an explicit setup() when running tests in PTVS
+        @classmethod
+        def setUpClass(cls):
+            super(ExploreUnitTest, cls).setUpClass()
+            django.setup()
+    playerdetails = PlayerDetails.objects.get(pk=1)
+
+    # Geen soldaten gestuurd. Explore fail test
+    UnitTest1 = EventHandlerTest.Eventhandler(playerdetails, '', 0, 1, 1, 5, 50, 5)
+
+    # Bandits met 1 soldaat. Explore fail test
+    UnitTest2 = EventHandlerTest.Eventhandler(playerdetails, '', 1, 1, 1, 5, 50, 5)
+
+    # Explore succes test
+    UnitTest3 = EventHandlerTest.Eventhandler(playerdetails, '', 2, 1, 1, 5, 50, 5)
+
+    # Explore succes. Resources test
+    UnitTest4 = EventHandlerTest.Eventhandler(playerdetails, '', 5, 86, 1, 5, 50, 5)
+
+    # Explore 5 soldaten gevonden.
+    UnitTest5 = EventHandlerTest.Eventhandler(playerdetails, '', 5, 20, 1, 5, 50, 5)
+
+    # Explore zombies met 1 soldaat
+    UnitTest6 = EventHandlerTest.Eventhandler(playerdetails, '', 1, 41, 4, 5, 50, 5)
+
+    # Explore zombies met 5 soldaten
+    UnitTest7 = EventHandlerTest.Eventhandler(playerdetails, '', 5, 41, 2, 43, 50, 5)
+
+    # Resources gevonden. Explore succes
+    UnitTest8 = EventHandlerTest.Eventhandler(playerdetails, '', 8, 75, 2, 43, 50, 5)
+
+    def ExploreUnitTest1(self):
+        self.assertEqual(self.UnitTest1, 'Je hebt het niet gehaald.')
+
+    def ExploreUnitTest2(self):
+        self.assertEqual(self.UnitTest2, 'Je hebt het niet gehaald.')
+
+    def ExploreUnitTest3(self):
+        self.assertEqual(self.UnitTest3,
+                         'Je bent 5 bandits tegengekomen. Je bent tijdens het vuurgevecht 1 soldaten verloren.')
+
+    def ExploreUnitTest4(self):
+        self.assertEqual(self.UnitTest4,
+                         'Zoektocht geslaagd! Je hebt je eigen dorp weer bereikt met een extra bonus van 50!')
+
+    def ExploreUnitTest5(self):
+        self.assertEqual(self.UnitTest5,
+                         'Je hebt een klein kamp gevonden met vriendelijke overlevenden. Ze willen graag bij je sluiten. Je hebt 5 soldaten gekregen.')
+
+    def ExploreUnitTest6(self):
+        self.assertEqual(self.UnitTest6, 'Je hebt het niet gehaald.')
+
+    def ExploreUnitTest7(self):
+        self.assertEqual(self.UnitTest7,
+                         'Je bent 43 aantal zombies tegengekomen. Je bent tijdens het gevecht 2 soldaten verloren.')
+
+    def ExploreUnitTest8(self):
+        self.assertEqual(self.UnitTest8,
+                         'Je bent een vervallen gebouw tegenkomen. Uit dit gebouw heb je 50 resources kunnen halen.')
+
+
+class Testing(unittest.TestCase):
+    SoldierUnitTest2 = Town.Town("UnitTest2", -20, -3, "Alot", -900, -10,-900,-10)
+    SoldierUnitTest3 = Town.Town("UnitTest3", 20, 3, "Alot", 400, 3,400,3)
+    SoldierUnitTest4 = Town.Town("UnitTest4", 0, 0, "Alot", 1000, 0,1000,0)
+    SoldierUnitTest5 = Town.Town("UnitTest5", 20, 3, "Alot", 900, -5,900,-5)
+
+    def test_soldier(self):
+        # Not enough money
+        self.assertEqual(self.SoldierUnitTest2.addSoldier(2), False)
+
+        self.assertEqual(self.SoldierUnitTest3.addSoldier(2), 5)
+
+        self.assertEqual(self.SoldierUnitTest5.addSoldier(4), -1)
+
+    def test_money(self):
+        self.SoldierUnitTest4.addSoldier(1)
+        self.assertEqual(self.SoldierUnitTest4.money, 900)
+
+
+class Test2(unittest.TestCase):
+    UnitTest6 = Town.Town("UnitTest6", 20, 3, "Alot", 200, 0,0,200)
+    UnitTest7 = Town.Town("UnitTest7", 5, 5, "Alot", 100, 4,100,4)
+    UnitTest8 = Town.Town("UnitTest8", 2, 6, "Alot", 700, 3,700,3)
+    UnitTest9 = Town.Town("UnitTest9", 3, 7, "Alot", 800, 0,800,0)
+    UnitTest10 = Town.Town("UnitTest10", 2, 9, "Alot", 600, 2,600,2)
+    UnitTest11 = Town.Town("UnitTest11", 4, 7, "Alot", 700, 10,700,10)
+
+    def TownUnitTest6(self):
+        self.assertEqual(self.UnitTest6.addSoldier(1),
+                         "Soldier were created. The soldier fights a horde of zombies and dies")
+
+    def TownUnitTest7(self):
+        self.assertEqual(self.UnitTest6.addSoldier(2),
+                         "6 Soldiers were created.The soldiers were crushed by a big titan.")
+
+    def TownUnitTest8(self):
+        self.assertEqual(self.UnitTest8.addSoldier(5),
+                         "8 Soldiers were created. The soldiers killed the titan, but got killed by the gravekeeper.")
+
+    def TownUnitTest9(self):
+        self.assertEqual(self.UnitTest9.addSoldier(9),
+                         "9 Soldiers were created. The soldiers killed the zombies and the titan, but got killed by an exploding bomb.")
+
+    def TownUnitTest10(self):
+        self.assertEqual(self.UnitTest10.addSoldier(1),
+                         "3 Soldiers were created. The soldiers went into a graveyard and got buried alive by the gravekeeper.")
+
+    def TownUnitTest11(self):
+        self.assertEqual(self.UnitTest10.addSoldier(0),
+                         "10 Soldiers were created. The soldiers killed the bandits, zombies, titan, gravekeeper and the unknown entity. Congratulations! Go to the next level!")
+
+
+
+
+
+
+
+
+

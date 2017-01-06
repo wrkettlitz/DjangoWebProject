@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Player,PlayerTown,PlayerDetails
 
  
 
@@ -41,4 +42,19 @@ class UserCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+class ExploreForm(forms.Form):
+    playerdetails = PlayerDetails.objects.get(id=1)
+    playerrecourses = playerdetails.Resources
+    playersoldiers = playerdetails.Soldiers
+    exploreform = forms.IntegerField(max_value=playersoldiers,min_value=1)
 
+class TownForm(forms.Form):
+    playerdetails = PlayerDetails.objects.get(pk=1)
+    playerTown = PlayerTown.objects.get(id=playerdetails.id)
+    playerrescources = playerdetails.Resources
+    playerbarrack = playerTown.BarrackName
+    Player = Player.objects.get(id=1)
+    Money = playerTown.Money
+    BarrackName = playerTown.BarrackName
+    PlayerSoldier = playerdetails.Soldiers
+    townform = forms.Textarea()

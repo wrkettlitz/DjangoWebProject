@@ -1,0 +1,38 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section id="TownZ">
+            <form action="Page2.html" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <h4>Welcome to TownZ!</h4>
+                <p>
+
+                Objective: Unlock the barrack that you found.
+
+                </p>
+
+
+                <hr />
+                <p>
+                    You, {{ Player }} has entered the world of TownZ. {{ Player}} found a barrack called {{ BarrackName }}.
+                    Unlock the barrack.
+                </p>
+                <label>Click</label>
+                {{ form.townform }}
+                <input type="submit" value="Unlock"/>
+
+
+            </form>
+        </section>
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+    <h2>{{ title }}</h2>
+<div class="row">
+    <div class="col-md-8">
+        <section id="TownZ">
+            <form action=""method="post" class="form-horizontal">
+                {% csrf_token %}
+                <h4>Welcome to TownZ!</h4>
+                <p>
+
+                Objective: Create 10 soldiers.
+                </p>
+
+
+                <hr />
+                <p>
+                  {{ Player2 }} has now {{ Money}} coins and {{ PlayerSoldier }} soldiers.
+
+
+                </p>
+
+                 <label class="col-md-2 control-label">How many soldiers do you want to create? </label>
+                {{ form.townform }}
+                <input type="submit" class="btn" value="Add soldier" name="mybtn">
+
+                <p>
+
+                    {{ text }}
+                </p>
+
+
+            </form>
+
+            <br/>
+
+
+
+        </section>
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}

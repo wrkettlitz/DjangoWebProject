@@ -7,13 +7,24 @@ from django.conf.urls import url
 import django.contrib.auth.views
 import app.forms
 import app.views
+from datetime import datetime
+from django.conf.urls import url, include
+from app.models import Player,PlayerDetails,PlayerTown
+import django.contrib.auth.views
+from django.contrib import admin
+import app.forms
+import app.views
+admin.autodiscover()
 
+admin.site.register(Player)
+admin.site.register(PlayerDetails)
+admin.site.register(PlayerTown)
 
 
 # Uncomment the next lines to enable the admin:
 # from django.conf.urls import include
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = [
     # Examples:
@@ -21,8 +32,13 @@ urlpatterns = [
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^Friends', app.views.friends, name='Friends'),
     url(r'^about', app.views.about, name='about'),
-    url(r'^explore', app.views.explore, name='explore'),
+    url(r'^explore', include('app.urls')),
+    url(r'^result', app.views.Result, name='result'),
     url(r'^City', app.views.Barack, name='City'),
+    url(r'^TownZ', app.views.TownZ, name='TownZ'),
+    url(r'^Page2', app.views.Page2, name='Page2'),
+
+
     url(r'^login/$',
         django.contrib.auth.views.login,
         {
@@ -49,8 +65,8 @@ urlpatterns = [
         name='register', ),
 
     # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    #url(r'^admin/', include(admin.site.urls)),
 ]

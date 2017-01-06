@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8">
+        <section id="ExploreForm">
+                <form action="/result" method="post" class="form-horizontal">
+                {% csrf_token %}
+                <div class="form-group">
+                    <h3>
+                        Je resultaat!
+                    </h3>
+                    <h6>
+                        {{ end }}
+                        <a href="explore.html" name="Ga terug naar Explore"></a>
+                    </h6>
+                   </div>
+                </form>
+        </section>
+    </div>
+</div>
+
+{% endblock %}

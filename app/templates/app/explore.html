@@ -1,34 +1,31 @@
-﻿{% extends "app/layout.html" %}
+﻿<!DOCTYPE html>
+
+{% extends "app/layout.html" %}
 
 {% block content %}
 
-<h2>{{ title }}</h2>
-<h3>{{ message }}</h3>
-
-<html>
-<body>
 
 
-    <div class="row">
+<div class="row">
     <div class="col-md-8">
-    <button id="myClickButton" type="button">Click</button>
-      <div id="myOutput"></div>
-        <section id="loginForm">
-            <form action="." method="post">{% csrf_token %}
-            <ul>{{form.AmountSoldiers}}</ul>
-                
-                    <div class="form-group">
-                    <label for="Amount_soldiers" class="col-md-2 control-label">Aantal</label>
-                    <div class="col-md-10">
-                        {{ form.AmountSoldiers }}
-                    </div>
-                </div>
-            </form>
+        <section id="ExploreForm">
+                <form action="/result" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <h3>
+                        Welkom bij de Explore pagina
+                    </h3>
+                    <h6>
+                        Ga hier op zoektocht naar benodigdheden voor je dorp. De kans bestaat dat je soldaten verliest.
+                        Je hebt {{playersoldiers}} soldaten. Je kan niet meer soldaten sturen dan dat je hebt.
+                    </h6>
+                   </div>
+                    <label class="col-md-2 control-label">Hoeveel soldaten wil je sturen? </label>
+                        {{form.exploreform}}
+                    <input type="submit" name="Explorebutton" value="Go"/>
+                </form>
         </section>
     </div>
 </div>
-
-</body>
-</html>
 
 {% endblock %}

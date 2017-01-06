@@ -6,12 +6,15 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-from . import Explore
+from . import explore
 from . import Town
 from . import player
+from . import Town
+from .forms import ExploreForm,TownForm
 
-
-
+from .models import Player, PlayerDetails,PlayerTown
+from .forms import ExploreForm
+from .explore import *
 from django.http import HttpResponseRedirect    
 from django.http import HttpResponse
 from django.contrib import auth                 
@@ -110,20 +113,24 @@ def about(request):
             'year':datetime.now().year,
         }
     )
+
+
 def explore(request):
-    currenstats = Explore.CurrentStats
-    
-    """Renders the explore page."""
-    assert isinstance(request, HttpRequest)   
-    return render(
-        request,
-        'app/explore.html',
-        {
-            'title':'Explore',
-            'message': currenstats.CurrentSoldiers(100) ,
-            'year':datetime.now().year,
-        }
-    )
+    form_class = ExploreForm()
+    context = {'playerrecources': ExploreForm.playerrecourses, 'playersoldiers': ExploreForm.playersoldiers,
+               "form": form_class, 'title': 'TownZ'}
+    assert isinstance(request, HttpRequest)
+    return render(request, 'app/explore.html', context)
+
+
+def Result(request):
+    gekozen_aantal = request.POST["exploreform"]
+    explorehand = EventHandler()
+    playerdetails = PlayerDetails.objects.get(id=1)
+    Eindresultaat = ''
+    Eindresultaat = explorehand.Eventhandler(playerdetails, Eindresultaat, gekozen_aantal)
+    context = {'end': Eindresultaat}
+    return render(request, 'app/result.html', context)
 
 def friends(request):
     """Renders the Friends list."""
@@ -205,6 +212,49 @@ def Barack(request):
         'level': Town.T.level,
     }
 )
+
+
+def TownZ(request):
+    townform = TownForm()
+    context = {'title':TownZ,'Player': townform.Player.PlayerName,'PlayerSoldier': townform.playerdetails.Soldiers,'BarrackName': townform.playerTown.BarrackName}
+    assert isinstance(request, HttpRequest)
+    return render(request,'app/townZ.html', context)
+
+def Page2(request):
+    townform = TownForm()
+
+
+    assert isinstance(request, HttpRequest)
+    if request.method=='POST':
+        Town.T.addSoldier(1)
+
+        if Town.T.amount_of_soldiers == 1:
+            text = "Soldier were created. The soldier fights a horde of zombies and dies."
+        elif Town.T.amount_of_soldiers == 2:
+            text = "2 Soldiers were created. The soldiers were killed by bandits"
+        elif Town.T.amount_of_soldiers == 3:
+            text = "3 Soldiers were created. The soldiers went into a graveyard and got buried alive by the gravekeeper."
+        elif Town.T.amount_of_soldiers == 4:
+            text = "4 Soldier were created. The soldiers went into a castle and got killed by an unknown entity."
+        elif Town.T.amount_of_soldiers == 5:
+            text = "5 Soldiers were created. The soldiers fell into a cave...they died"
+        elif Town.T.amount_of_soldiers == 6:
+            text = " 6 Soldiers were created.The soldiers were crushed by a big titan"
+        elif Town.T.amount_of_soldiers == 7:
+            text = "7 Soldiers were created. The soldiers killed a horde of zombies, but they got infected and died."
+        elif Town.T.amount_of_soldiers == 8:
+            text = "8 Soldiers were created. The soldiers killed the titan, but got killed by the gravekeeper"
+        elif Town.T.amount_of_soldiers == 9:
+            text = "9 Soldiers were created. The soldiers killed the zombies and the titan, but got killed by an exploding bomb."
+        elif Town.T.amount_of_soldiers == 10:
+            text = "10 Soldiers were created. The soldiers killed the bandits, zombies, titan, gravekeeper and the unknown entity. Congratulations! Go to the next level!"
+        else:
+            text = str(Town.T.amount_of_soldiers) + "Soldiers were created"
+
+    context = {'Player': Town.T.name, 'PlayerSoldier': Town.T.amount_of_soldiers, 'Money': Town.T.money,'Player2': townform.Player.PlayerName, 'text': text}
+
+
+    return render(request, 'app/Page2.html', context)
 
 
 
