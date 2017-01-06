@@ -7,10 +7,13 @@ from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
 from . import Explore
+from . import Town
+from . import player
 
 
 
 from django.http import HttpResponseRedirect    
+from django.http import HttpResponse
 from django.contrib import auth                 
 from django.template.context_processors import csrf 
 from django.shortcuts import render_to_response
@@ -64,7 +67,6 @@ def explore(request):
         request,
         'app/explore.html',
         {
-            
             'title':'Explore',
             'message': currenstats.CurrentSoldiers(100) ,
             'year':datetime.now().year,
@@ -77,7 +79,10 @@ def register_user(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
-
+            saved_email = request.POST.get("email", "")
+            saved_username = request.POST.get("username", "")
+            saved_password1 = request.POST.get("password1", "")
+            saved_password2 = request.POST.get("password2", "")
             form.save()
             return HttpResponseRedirect('/')
 
@@ -87,6 +92,39 @@ def register_user(request):
     args['form'] = UserCreationForm()
 
     return render_to_response('app/register.html', args)
+
+
+def Barack(request):
+    Baracks = Town.Town
+    
+    """Renders the explore page."""
+    assert isinstance(request, HttpRequest)  
+
+    if request.method =='POST':
+        if Town.T.addBarrack(1) == False:
+            return render(
+                request,
+                'app/City.html',
+                {
+                    'title':'Amount of baracks:',
+                    'Barracks': Town.T.amount_of_barracks,
+                    'Money': Town.T.money,
+                    'error': 'Not enough money to buy',
+                    'level': Town.T.level,
+                }
+            )
+    return render(
+    request,
+    'app/City.html',
+    {
+        'title':'Amount of baracks:',
+        'Barracks': Town.T.amount_of_barracks,
+        'Money': Town.T.money,
+        'level': Town.T.level,
+    }
+)
+
+
 
 
 
