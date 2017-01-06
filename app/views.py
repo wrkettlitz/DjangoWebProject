@@ -15,58 +15,6 @@ from django.template.context_processors import csrf
 from django.shortcuts import render_to_response
 
 from app.forms import UserCreationForm
-from app.Friends import *
-import app.Friends
-"""Activates sqlite3, IMPORTANT! ;)"""
-
-#!/usr/bin/python
-
-import sqlite3
-
-conn = sqlite3.connect('db.sqlite3')
-
-print("Opened database successfully");
-
-
-"""This is a test, NOT important"""
-
-
-print("Testing DataBase");
-conn.execute("""DROP TABLE IF EXISTS COMPANY """)
-conn.execute('''CREATE TABLE COMPANY
-       (ID INT PRIMARY KEY     NOT NULL,
-       NAME           TEXT    NOT NULL,
-       AGE            INT     NOT NULL,
-       ADDRESS        CHAR(50),
-       SALARY         REAL);''')
-print("Table created successfully");
-
-conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
-      VALUES (1, 'Paul', 32, 'California', 20000.00 )");
-
-conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
-      VALUES (2, 'Allen', 25, 'Texas', 15000.00 )");
-
-conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
-      VALUES (3, 'Teddy', 23, 'Norway', 20000.00 )");
-
-conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
-      VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 )");
-
-conn.commit()
-print("Records created successfully");
-
-cursor = conn.execute("SELECT id, name, address, salary  from COMPANY")
-for row in cursor:
-   print("ID = ", row[0])
-   print("NAME = ", row[1])
-   print("ADDRESS = ", row[2])
-   print("SALARY = ", row[3], "\n")
-
-print("Operation done successfully");
-
-
-""" end test"""
 
 
 def home(request):
@@ -107,36 +55,6 @@ def about(request):
         }
     )
 
-def friends(request):
-    """Renders the Friends list."""
-    assert isinstance(request, HttpRequest)
-    current_user = request.user
-    Friends= app.Friends.Friends
-    if request.user.is_authenticated():
-        return render(
-            request,
-            'app/Friends.html',
-            {
-                'title':'Friends',
-                'message':'Your Friends list.',
-                'Friend_list':Friends(request).Friend_list_name,
-
-                'year':datetime.now().year,
-            }
-            )
-    else:
-        return render(
-            request,
-            'app/Friends.html',
-            {
-                'title':'Friends',
-                'message':'Your Friends list.',
-                'Friend_list':"Please log in",
-
-                'year':datetime.now().year,
-            }
-            )
-
 def register_user(request):
     """Registers users"""
     assert isinstance(request, HttpRequest)
@@ -153,6 +71,7 @@ def register_user(request):
     args['form'] = UserCreationForm()
 
     return render_to_response('app/register.html', args)
+
 
 
 
