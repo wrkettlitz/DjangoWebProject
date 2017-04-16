@@ -23,6 +23,7 @@ from django.shortcuts import render_to_response
 
 from app.forms import UserCreationForm
 from app.Friends import *
+from app.Forge import *
 import app.Friends
 """Activates sqlite3, IMPORTANT! ;)"""
 
@@ -161,7 +162,77 @@ def friends(request):
                 'year':datetime.now().year,
             }
             )
+    
 
+def forge(request):
+    """Renders the Forge."""
+    assert isinstance(request, HttpRequest)
+    current_user = request.user
+    Forge= app.Forge.Forge
+    
+    current_weapon_level = Forge(request).current_weapon_level
+    current_weapon_name = Forge(request).current_weapon_name
+
+    
+    next_weapon_name = Forge(request).next_weapon_name
+    next_weapon_cost = Forge(request).next_weapon_cost
+    Credits = Forge(request).Credits
+    if next_weapon_cost <= int(Credits):
+        if current_weapon_level == 4:
+            Response = "Cant upgrade to better quality"
+        else:
+            Response = "<input type=\"submit\" class=\"btn\" value=\"Yes\" name=\"mybtn\">"
+    else:
+        Response = "Not enough credits"
+
+    if request.user.is_authenticated():
+       if request.method =='POST':
+            print("got into post")
+            if next_weapon_cost <= int(Credits) and current_weapon_level < 4:
+                Success = Forge.BuyWeapon(request,Credits,next_weapon_cost, current_weapon_level)
+            
+            current_weapon_level = Forge(request).current_weapon_level
+            current_weapon_name = Forge(request).current_weapon_name
+
+            Credits = Forge(request).Credits
+            next_weapon_name = Forge(request).next_weapon_name
+            next_weapon_cost = Forge(request).next_weapon_cost
+            if next_weapon_cost <= int(Credits):
+                if current_weapon_level == 4:
+                    Response = "Cant upgrade to better quality"
+                else:
+                    Response = "<input type=\"submit\" class=\"btn\" value=\"Yes\" name=\"mybtn\">"
+            else:
+                    Response = "Not enough credits"
+
+       return render(
+            request,
+            'app/Forge.html',
+            {
+                'title':'Forge',
+                'message':'Your Forge.',
+                'current_weapon': current_weapon_name,
+                'next_weapon_name':next_weapon_name,
+                'next_weapon_cost':next_weapon_cost,
+                'Credits': Credits,
+                'Response': Response,
+                
+
+                'year':datetime.now().year,
+            }
+            )
+    else:
+        return render(
+            request,
+            'app/Forge.html',
+            {
+                'title':'Forge',
+                'message':'Your Forge',
+                'Friend_list':"Please log in",
+
+                'year':datetime.now().year,
+            }
+            )
 def register_user(request):
     """Registers users"""
     assert isinstance(request, HttpRequest)

@@ -14,6 +14,7 @@ import django.contrib.auth.views
 from django.contrib import admin
 import app.forms
 import app.views
+#import app.urls
 admin.autodiscover()
 
 admin.site.register(Player)
@@ -32,7 +33,8 @@ urlpatterns = [
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^Friends', app.views.friends, name='Friends'),
     url(r'^about', app.views.about, name='about'),
-    url(r'^explore', include('app.urls')),
+    url(r'^explore', app.views.about, name='explore'),
+    url(r'^Forge', app.views.forge, name='Forge'),
     url(r'^result', app.views.Result, name='result'),
     url(r'^City', app.views.Barack, name='City'),
     url(r'^TownZ', app.views.TownZ, name='TownZ'),

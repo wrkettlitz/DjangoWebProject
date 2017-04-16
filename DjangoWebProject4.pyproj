@@ -4,8 +4,9 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>DjangoWebProject4</Name>
     <RootNamespace>DjangoWebProject4</RootNamespace>
-    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterId>{9a7a9026-48c1-4688-9d5d-e5699d47d074}</InterpreterId>
     <InterpreterVersion>3.4</InterpreterVersion>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -37,6 +38,7 @@
     </Compile>
     <Compile Include="app\Explore.py" />
     <Compile Include="app\forms.py" />
+    <Compile Include="app\Forge.py" />
     <Compile Include="app\models.py" />
     <Compile Include="app\player.py">
       <SubType>Code</SubType>
@@ -94,6 +96,7 @@
     <Folder Include="test\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\Forge.html" />
     <Content Include="app\templates\app\Friends.html" />
     <Content Include="app\templates\app\City.html" />
     <Content Include="app\templates\app\explore.html" />
@@ -135,7 +138,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\3.4" />
+    <InterpreterReference Include="{9a7a9026-48c1-4688-9d5d-e5699d47d074}\3.4" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
   <!-- Specify pre- and post-build commands in the BeforeBuild and 

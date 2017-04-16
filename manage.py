@@ -5,6 +5,7 @@ Command-line utility for administrative tasks.
 
 import os
 import sys
+import django
 
 if __name__ == "__main__":
     os.environ.setdefault(

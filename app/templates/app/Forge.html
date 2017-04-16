@@ -1,0 +1,45 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }} </h3>
+
+
+<html>
+<body>
+
+
+    <div class="row">
+    <div class="col-md-8">
+      <div id="myOutput"></div>
+        <section id="loginForm">
+            <form action="" method="post">{% csrf_token %}
+            You have {{ Credits }} credits.
+
+            Your soldiers currently uses {{ current_weapon}}.
+            Do you wan to upgrade to  {{ next_weapon_name}} for  {{ next_weapon_cost}} Credits?
+
+                {% autoescape off %}
+                {{ Response }}
+                {% endautoescape %}
+
+                    
+
+                
+
+
+
+
+          
+
+            </form>
+            
+        </section>
+    </div>
+</div>
+
+</body>
+</html>
+
+{% endblock %}
