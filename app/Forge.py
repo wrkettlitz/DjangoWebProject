@@ -68,7 +68,7 @@ class Forge(object):
 
 
     def BuyWeapon(request, current_credits, next_weapon_cost, current_weapon_level):
-        if  current_credits>=next_weapon_cost and  current_weapon_level <4:
+        if  int(current_credits)>=int(next_weapon_cost) and  int(current_weapon_level) <4:
             
             import sqlite3
             conn = sqlite3.connect('db.sqlite3')
