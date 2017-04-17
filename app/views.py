@@ -177,6 +177,9 @@ def forge(request):
     next_weapon_name = Forge(request).next_weapon_name
     next_weapon_cost = Forge(request).next_weapon_cost
     Credits = Forge(request).Credits
+    Admin = False
+    if request.user.id == 2:
+        Admin = True
     if next_weapon_cost <= int(Credits):
         if current_weapon_level == 4:
             Response = "Cant upgrade to better quality"
@@ -197,6 +200,8 @@ def forge(request):
             Credits = Forge(request).Credits
             next_weapon_name = Forge(request).next_weapon_name
             next_weapon_cost = Forge(request).next_weapon_cost
+            
+           
             if next_weapon_cost <= int(Credits):
                 if current_weapon_level == 4:
                     Response = "Cant upgrade to better quality"
@@ -216,6 +221,7 @@ def forge(request):
                 'next_weapon_cost':next_weapon_cost,
                 'Credits': Credits,
                 'Response': Response,
+                'Admin': Admin,
                 
 
                 'year':datetime.now().year,

@@ -68,34 +68,30 @@ class Forge(object):
 
 
     def BuyWeapon(request, current_credits, next_weapon_cost, current_weapon_level):
+        if  current_credits>=next_weapon_cost and  current_weapon_level <4:
+            
+            import sqlite3
+            conn = sqlite3.connect('db.sqlite3')
+            cur = conn.cursor()
+
+        
+        
+            current_user = request.user
+        
+            cur.execute("UPDATE Forge SET weapon=? WHERE User_ID=?", (int(current_weapon_level) + 1, current_user.id))
+            cur.execute("UPDATE Credits SET Credits=? WHERE ID=?", (int(current_credits) - (int(next_weapon_cost)), (current_user.id)))
+            print("buyweapon wordt uitgevoerd" + str(current_credits) + str(next_weapon_cost) + str(current_weapon_level)) 
+            conn.commit()
+            conn.close()
+
+    def TestAccountDefaultValues(self,AccountID, weapon_level, Credits ):
         import sqlite3
         conn = sqlite3.connect('db.sqlite3')
         cur = conn.cursor()
-        
-        
-        current_user = request.user
-        
-        cur.execute("UPDATE Forge SET weapon=? WHERE User_ID=?", (int(current_weapon_level) + 1, current_user.id))
-        cur.execute("UPDATE Credits SET Credits=? WHERE ID=?", (int(current_credits) - (int(next_weapon_cost)), (current_user.id)))
-        print("buyweapon wordt uitgevoerd" + str(current_credits) + str(next_weapon_cost) + str(current_weapon_level)) 
+        cur.execute("UPDATE Forge SET weapon=? WHERE User_ID=?", (weapon_level, AccountID))
+        cur.execute("UPDATE Credits SET Credits=? WHERE ID=?", (Credits, AccountID))
         conn.commit()
         conn.close()
+
       
         
-        
-
-
-
-
-
-
-       
-
-
-
-
-        
-
-        
-
-    

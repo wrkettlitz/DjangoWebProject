@@ -6,6 +6,7 @@ when you run "manage.py test".
 import django
 from django.test import TestCase
 from app.Friends import *
+from app.Forge import *
 import sqlite3
 import sqlite3
 from app.views import *
@@ -244,6 +245,8 @@ class Testing(unittest.TestCase):
     SoldierUnitTest3 = Town.Town("UnitTest3", 20, 3, "Alot", 400, 3,400,3)
     SoldierUnitTest4 = Town.Town("UnitTest4", 0, 0, "Alot", 1000, 0,1000,0)
     SoldierUnitTest5 = Town.Town("UnitTest5", 20, 3, "Alot", 900, -5,900,-5)
+    
+    
 
     def test_soldier(self):
         # Not enough money
@@ -292,6 +295,68 @@ class Test2(unittest.TestCase):
 
 
 
+class ForgeTest(unittest.TestCase):
+    #We gaan de Admin Account (ID 2) Gebruiken voor deze test.
+    #hiermee kunnen we de values zetten die we gebruiken voor de test.
+    Set = Forge.TestAccountDefaultValues
+    #Omdat we de object "request.user.id" gebruiken in Forge moet request.user.id 2 zijn.
+    request = type('', (), {})()
+    request.user = type('', (), {})()
+    request.user.id =2
+
+
+    def test(self):
+
+            
+            #nu geven we de admin account een level 1 wapen en 10000 credits
+            self.Set(2,1,10000)
+            #nu kopen we een level 2 wapen.
+            Forge.BuyWeapon(self.request, 10000, 2500, 1)
+            #Nu moet de admin een level 2 wapen hebben en 7500 credits.
+            self.assertEqual(int(Forge(self.request).current_weapon_level), 2)
+            self.assertEqual(int(Forge(self.request).Credits), 7500)
+    def test2(self):
+
+            #nu level 3 wapen.
+            self.Set(2,2,7500)
+            Forge.BuyWeapon(self.request, 7500, 5000, 2)
+            #Nu moet de admin een level 3 wapen hebben en 2500 credits.
+            self.assertEqual(int(Forge(self.request).current_weapon_level), 3)
+            self.assertEqual(int(Forge(self.request).Credits), 2500)
+    def test3(self):
+            #nu level 4 met onvoldoende geld
+            self.Set(2,3,2500)
+            Forge.BuyWeapon(self.request, 2500, 10000, 3)
+            #Nu moet de admin een level 3 wapen hebben en 2500 credits.
+            self.assertEqual(int(Forge(self.request).current_weapon_level), 3)
+            self.assertEqual(int(Forge(self.request).Credits), 2500)
+    def test4(self):        
+
+            #nu level 4 met voldoende geld
+            self.Set(2,3,20000)
+            Forge.BuyWeapon(self.request, 20000, 10000, 3)
+            #Nu moet de admin een level 4 wapen hebben en 10000 credits.
+            self.assertEqual(int(Forge(self.request).current_weapon_level), 4)
+            self.assertEqual(int(Forge(self.request).Credits), 10000)
+    def test5(self):
+            
+            #nu level 5 maar level 5 bestaat niet
+            self.Set(2,4,20000)
+            Forge.BuyWeapon(self.request, 500, 10000, 4)
+            #Nu moet de admin een level 4 wapen hebben en 20000 credits.
+            self.assertEqual(int(Forge(self.request).current_weapon_level), 4)
+            self.assertEqual(int(Forge(self.request).Credits), 20000)
+
+            
+    def test6(self):
+        #backtodefault
+        self.Set(2,1,10000)
+        self.assertEqual(int(Forge(self.request).current_weapon_level), 1)
+        self.assertEqual(int(Forge(self.request).Credits), 10000)
+        
+       
+
+            
 
 
 
